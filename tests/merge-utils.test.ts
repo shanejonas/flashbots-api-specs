@@ -1,9 +1,9 @@
-// @ts-ignore
-import mergeOpenRPC from '../merge-utils';
+import { describe, expect, test } from "bun:test";
+import mergeOpenRPC from "../scripts/merge-utils";
 
 describe("merge openrpc document", () => {
-  describe('mergeOpenRPC', () => {
-    it('result does not contain duplicate methods', () => {
+  describe("mergeOpenRPC", () => {
+    test("result does not contain duplicate methods", () => {
       const doc1 = {
         info: {},
         methods: [
@@ -22,7 +22,7 @@ describe("merge openrpc document", () => {
         ],
         components: {}
       };
-      expect(mergeOpenRPC(doc1, doc2).methods[0].description).toBe("abc");
+      expect(mergeOpenRPC(doc1, doc2).methods?.[0].description).toBe("abc");
     });
   });
 });

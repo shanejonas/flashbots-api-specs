@@ -3,7 +3,8 @@ import { OpenrpcDocument } from "@open-rpc/meta-schema"
 import mm from '../dist/build/openrpc.json';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js'
 
-const URL = "https://rpc-sepolia.flashbots.net"
+const DEFAULT_RPC_URL = "https://rpc-sepolia.flashbots.net";
+const URL = process.env.COVERAGE_RPC_URL || DEFAULT_RPC_URL;
 
 let id = 0;
 const customTransport = async (_: string, method: string, params: any): Promise<any> => {
@@ -22,6 +23,9 @@ const customTransport = async (_: string, method: string, params: any): Promise<
 }
 
 const OpenRPCDocument = mm as OpenrpcDocument;
+if (!OpenRPCDocument) {
+  throw new Error("No OpenRPC Document at dist/build/openrpc.json")
+}
 
 const main = async () => {
   const openrpcDocument = await parseOpenRPCDocument(OpenRPCDocument);

@@ -1,6 +1,6 @@
 # Flashbots Protect JSON-RPC API Specification
 
-This repository contains the OpenRPC specification for Flashbots' Wallet JSON-RPC API.
+This repository contains the OpenRPC specification for Flashbots' JSON-RPC API.
 You can view the specs in the following formats:
 
 - [Latest build](https://flashbots.github.io/api-specs/latest/openrpc.json)
@@ -15,10 +15,12 @@ You can contribute to the API specs using the following steps.
 
 1. Edit the API specs in the `openrpc.yaml` file.
    See the [OpenRPC](https://open-rpc.org/) docs for more information on how to format the specs.
-2. Run `npm install` if you haven't previously set up the repository.
-3. Run `npm run build` to re-generate the output file: `dist/build/openrpc.json`.
+2. Run `bun install` if you haven't previously set up the repository.
+3. Run `bun run build` to re-generate the output file: `dist/build/openrpc.json`.
 4. To view the result, paste that file's contents into the
-   [OpenRPC playground](https://playground.open-rpc.org/).
+ [OpenRPC playground](https://playground.open-rpc.org/).
+
+Run `bun test` to execute the unit tests, or `bun run build:watch` to rebuild whenever sources change. Run `bun run coverage` to execute `scripts/coverage.ts`, which drives the OpenRPC coverage suite, streams results to the console, and refreshes the HTML report (requires network access).
 
 ## Build process
 
@@ -30,7 +32,9 @@ When you build the project, the following happens:
 3. The local Flashbots specs are merged with the Ethereum specs.
 4. Each Ethereum method is tagged with the "Ethereum API" tag.
 5. The merged and filtered specs are written out to temporary files:
-	 - `src/build/openrpc.json`
+
+- `src/build/openrpc.json`
+
 6. These files are output to the `dist` folder and the `src/build` contents are deleted.
 
 ## Publishing process

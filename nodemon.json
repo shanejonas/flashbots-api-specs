@@ -1,4 +1,0 @@
-{
-  "watch": [ "./openrpc.yaml", "./merge-openrpc.js" ],
-  "exec": "npm start"
-}

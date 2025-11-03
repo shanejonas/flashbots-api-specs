@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       COVERAGE_RPC_URL: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.coverage_rpc_url || 'https://rpc-sepolia.flashbots.net' }}
+      ETHEREUM_PRIVATE_KEY: ${{ secrets.ETHEREUM_PRIVATE_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1

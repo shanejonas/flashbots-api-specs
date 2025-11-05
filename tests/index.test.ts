@@ -5,7 +5,7 @@ import { parseOpenRPCDocument } from "@open-rpc/schema-utils-js";
 
 const OpenRPCDocument = mm as OpenrpcDocument;
 
-describe("MetaMask API Reference", () => {
+describe("Flashbots OpenRPCDocument", () => {
   test("can be parsed", async () => {
     expect(OpenRPCDocument).toBeDefined();
     const result = await parseOpenRPCDocument(OpenRPCDocument);

@@ -29,10 +29,15 @@ jobs:
       - name: Build project
         run: bun run build
       - name: Run coverage
+        id: coverage
         run: bun run coverage
+        continue-on-error: true
       - name: Upload coverage report artifact
-        if: always() && hashFiles('html-report/**') != ''
+        if: always() && steps.coverage.outcome != 'cancelled' && hashFiles('html-report/**') != ''
         uses: actions/upload-artifact@v4
         with:
           name: html-report
           path: html-report
+      - name: Fail if coverage failed
+        if: steps.coverage.outcome == 'failure'
+        run: exit 1
